@@ -21,7 +21,7 @@
 
 -export([compile/3,test/2,cell_setup_req_msg/0]).
 
--include("test_server.hrl").
+-include_lib("test_server/include/test_server.hrl").
 
 -record('InitiatingMessage',{
 procedureID, criticality, messageDiscriminator, transactionID, value}).
@@ -299,7 +299,7 @@ protocolIEs_051107() ->
 
 compare(V,V) ->  
     ok;
-compare(V,L) when list(L) ->
+compare(V,L) when is_list(L) ->
     compare(V,list_to_binary(L));
 compare(_,_) ->
     false.

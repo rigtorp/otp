@@ -31,7 +31,7 @@
 -export([times/1]).
 -export([utf8_string/1]).
 
--include("test_server.hrl").
+-include_lib("test_server/include/test_server.hrl").
 
 
 compile(Config,Rules,Option) ->
@@ -930,7 +930,7 @@ utf8_string(_Rules) ->
     ?line {ok,Bin13} = asn1_wrapper:decode('PrimStrings','UTF',Bytes13),
     ?line {ok,LongVal} = wrapper_utf8_binary_to_list(Bin13).
 
-wrapper_utf8_binary_to_list(L) when list(L) ->
+wrapper_utf8_binary_to_list(L) when is_list(L) ->
     asn1rt:utf8_binary_to_list(list_to_binary(L));
 wrapper_utf8_binary_to_list(B) ->
     asn1rt:utf8_binary_to_list(B).
